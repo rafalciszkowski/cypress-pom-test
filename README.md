@@ -1,6 +1,10 @@
 # cypress-pom-test
 
 Docker execution:
-* run CMD as administrator
-* docker build -t cypress .
-* docker run --rm cypress
+1. run CMD terminal as administrator
+2. use following command:
+    ```bash
+    docker build -t cypress .
+3. then:
+    ```bash
+    docker run --rm cypress

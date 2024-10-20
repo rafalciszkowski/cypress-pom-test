@@ -21,15 +21,15 @@ describe('Adding and Deleting Todo', () => {
         newTodoPage.load()
         newTodoPage.addTodo(todoText)
 
-        todoPage.elements.newTodo().should('have.text', todoText)
+        todoPage.todoElement.should('have.text', todoText)
     });
 
     it('should delete the todo', () => {
         newTodoPage.createNewTodoUsingApi(todoText)
 
         todoPage.load()
-        todoPage.elements.newTodo().should('have.text', todoText)
+        todoPage.todoElement.should('have.text', todoText)
         todoPage.deleteTodo()
-        todoPage.elements.noTodos().should('be.visible')
+        todoPage.noTodosElement.should('be.visible')
     })
 });

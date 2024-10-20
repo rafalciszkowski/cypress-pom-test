@@ -3,29 +3,44 @@ import User from "../models/User"
 
 export default class RegisterPage {
     
-    userApi = new UserApi()
-    user = new User()
+    userApi: UserApi = new UserApi()
+    user: User = new User()
 
-    elements = {
-        firstNameInput: () => cy.get('[data-testid="first-name"]'),
-        lastNameInput: () => cy.get('[data-testid="last-name"]'),
-        emailInput: () => cy.get('[data-testid="email"]'),
-        passwordInput: () => cy.get('[data-testid="password"]'),
-        confirmPasswordInput: () => cy.get('[data-testid="confirm-password"]'),
-        signUpButton: () => cy.get('[data-testid="submit"]'),
+    get firstNameInput(): Cypress.Chainable<JQuery<HTMLElement>> {
+        return cy.get('[data-testid="first-name"]')
     }
+    
+    get lastNameInput(): Cypress.Chainable<JQuery<HTMLElement>> {
+        return cy.get('[data-testid="last-name"]')
+    } 
+
+    get emailInput(): Cypress.Chainable<JQuery<HTMLElement>> {
+        return cy.get('[data-testid="email"]')
+    } 
+
+    get passwordInput(): Cypress.Chainable<JQuery<HTMLElement>> {
+        return cy.get('[data-testid="password"]')
+    } 
+
+    get confirmPasswordInput(): Cypress.Chainable<JQuery<HTMLElement>> {
+        return cy.get('[data-testid="confirm-password"]')
+    } 
+
+    get signUpButton(): Cypress.Chainable<JQuery<HTMLElement>> {
+        return cy.get('[data-testid="submit"]')
+    } 
 
     load(): Cypress.Chainable<Window> {
         return cy.visit("/signup")
     }
 
     register(user: User): void {
-        this.elements.firstNameInput().type(user.getFirstName());
-        this.elements.lastNameInput().type(user.getLastName())
-        this.elements.emailInput().type(user.getEmail())
-        this.elements.passwordInput().type(user.getPassword())
-        this.elements.confirmPasswordInput().type(user.getPassword())
-        this.elements.signUpButton().click()
+        this.firstNameInput.type(user.getFirstName());
+        this.lastNameInput.type(user.getLastName())
+        this.emailInput.type(user.getEmail())
+        this.passwordInput.type(user.getPassword())
+        this.confirmPasswordInput.type(user.getPassword())
+        this.signUpButton.click()
     }
 
     registerUsingApi(): Cypress.Chainable<Cypress.Response<any>> {

@@ -18,6 +18,6 @@ describe('Register a New User', () => {
         registerPage.load()
         registerPage.register(user)
 
-        todoPage.elements.noTodos().should('be.visible')
+        todoPage.noTodosElement.should('be.visible')
     })
 })

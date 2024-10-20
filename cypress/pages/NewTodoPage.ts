@@ -3,14 +3,17 @@ import User from "../models/User"
 import RegisterPage from "./RegisterPage"
 
 export default class NewTodoPage {
-    
-    registerPage = new RegisterPage()
-    todoApi = new TodoApi()
-    user = new User()
 
-    elements = {
-        newTodoInput: () => cy.get('[data-testid="new-todo"]'),
-        createTodoButton: () => cy.get('[data-testid="submit-newTask"]'),
+    registerPage: RegisterPage = new RegisterPage()
+    todoApi: TodoApi = new TodoApi()
+    user: User = new User()
+
+    get newTodoInput(): Cypress.Chainable<JQuery<HTMLElement>> {
+        return cy.get('[data-testid="new-todo"]')
+    }
+
+    get createTodoButton(): Cypress.Chainable<JQuery<HTMLElement>> {
+        return cy.get('[data-testid="submit-newTask"]')
     }
 
     load(): Cypress.Chainable<Window> {
@@ -18,8 +21,8 @@ export default class NewTodoPage {
     }
 
     addTodo(task: string): void {
-        this.elements.newTodoInput().type(task)
-        this.elements.createTodoButton().click()
+        this.newTodoInput.type(task)
+        this.createTodoButton.click()
     }
 
     createNewTodoUsingApi(item: string): Cypress.Chainable<Cypress.Response<any>> {

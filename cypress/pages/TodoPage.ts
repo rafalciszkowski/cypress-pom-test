@@ -1,10 +1,19 @@
 export default class TodoPage {
 
-    elements = {
-        noTodos: () => cy.get('[data-testid="no-todos"]'),
-        addTodo: () => cy.get('[data-testid="add"]'),
-        newTodo: () => cy.get('[data-testid="todo-text"]'),
-        deleteTodo: () => cy.get('[data-testid="delete"]'),
+    get noTodosElement(): Cypress.Chainable<JQuery<HTMLElement>> {
+        return cy.get('[data-testid="no-todos"]')
+    }
+
+    get addTodoElement(): Cypress.Chainable<JQuery<HTMLElement>> {
+        return cy.get('[data-testid="add"]')
+    }
+
+    get todoElement(): Cypress.Chainable<JQuery<HTMLElement>> {
+        return cy.get('[data-testid="todo-text"]')
+    }
+
+    get deleteTodoElement(): Cypress.Chainable<JQuery<HTMLElement>> {
+        return cy.get('[data-testid="delete"]')
     }
 
     load(): Cypress.Chainable<Window> {
@@ -12,6 +21,6 @@ export default class TodoPage {
     }
 
     deleteTodo(): void {
-        this.elements.deleteTodo().click()
+        this.deleteTodoElement.click()
     }
 }

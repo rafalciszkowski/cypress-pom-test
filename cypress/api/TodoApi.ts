@@ -3,8 +3,8 @@ import UserApi from "./UserApi"
 
 export default class TodoApi {
 
-    userApi = new UserApi()
-    user = new User()
+    userApi: UserApi = new UserApi()
+    user: User = new User()
 
     createTodo(item: string): Cypress.Chainable<Cypress.Response<any>> {
         return this.userApi.register(this.user).then(({ body }) => {

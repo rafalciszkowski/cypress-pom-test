@@ -1,5 +1,8 @@
 import { faker } from '@faker-js/faker'
 
+/**
+ * Represents a User with generated details.
+ */
 export default class User {
 
     private firstName: string
@@ -14,19 +17,35 @@ export default class User {
         this.password = 'testPass1234'
     }
 
-    getFirstName(): string {
+    /**
+     * Gets the first name of the user.
+     * @returns {string} The first name of the user.
+     */
+    getFirstName() {
         return this.firstName
     }
 
-    getLastName(): string {
+    /**
+     * Gets the last name of the user.
+     * @returns {string} The last name of the user.
+     */
+    getLastName() {
         return this.lastName
     }
 
-    getEmail(): string {
+    /**
+     * Gets the email of the user.
+     * @returns {string} The email of the user.
+     */
+    getEmail() {
         return this.email
     }
 
-    getPassword(): string {
+    /**
+     * Gets the password of the user.
+     * @returns {string} The password of the user.
+     */
+    getPassword() {
         return this.password
     }
 }

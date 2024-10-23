@@ -1,14 +1,22 @@
 import User from "../models/User"
 import UserApi from "./UserApi"
 
+/**
+ * Represents the API for todo-related operations.
+ */
 export default class TodoApi {
 
     userApi: UserApi = new UserApi()
     user: User = new User()
 
-    createTodo(item: string): Cypress.Chainable<Cypress.Response<any>> {
+    /**
+     * Creates a new todo item.
+     * @param {string} item - The item to be created as a new todo.
+     * @returns {Cypress.Chainable<Cypress.Response<any>>} The response from the API.
+     */
+    createTodo(item) {
         return this.userApi.register(this.user).then(({ body }) => {
-            cy.request({
+            return cy.request({
                 method: 'POST',
                 url: '/api/v1/tasks',
                 body: {

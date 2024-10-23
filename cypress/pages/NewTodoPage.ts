@@ -15,7 +15,7 @@ export default class NewTodoPage {
      * Gets the input element for the new todo.
      * @returns {Cypress.Chainable<JQuery<HTMLElement>>} The new todo input element.
      */
-    get newTodoInput() {
+    get newTodoInput(): Cypress.Chainable<JQuery<HTMLElement>> {
         return cy.get('[data-testid="new-todo"]')
     }
 
@@ -23,7 +23,7 @@ export default class NewTodoPage {
      * Gets the button element for creating a new todo.
      * @returns {Cypress.Chainable<JQuery<HTMLElement>>} The create todo button element.
      */
-    get createTodoButton() {
+    get createTodoButton(): Cypress.Chainable<JQuery<HTMLElement>> {
         return cy.get('[data-testid="submit-newTask"]')
     }
 
@@ -31,7 +31,7 @@ export default class NewTodoPage {
      * Loads the new todo page.
      * @returns {Cypress.Chainable<Window>} The window object of the loaded page.
      */
-    load() {
+    load(): Cypress.Chainable<Window> {
         return cy.visit('/todo/new')
     }
 
@@ -39,7 +39,7 @@ export default class NewTodoPage {
      * Adds a new todo item.
      * @param {string} task - The task to be added as a new todo.
      */
-    addTodo(task) {
+    addTodo(task: string): void {
         this.newTodoInput.type(task)
         this.createTodoButton.click()
     }
@@ -49,7 +49,7 @@ export default class NewTodoPage {
      * @param {string} item - The item to be created as a new todo.
      * @returns {Cypress.Chainable<Cypress.Response<any>>} The response from the API.
      */
-    createNewTodoUsingApi(item) {
+    createNewTodoUsingApi(item: string): Cypress.Chainable<Cypress.Response<any>> {
         return this.todoApi.createTodo(item)
     }
 }

@@ -21,7 +21,7 @@ export default class User {
      * Gets the first name of the user.
      * @returns {string} The first name of the user.
      */
-    getFirstName() {
+    getFirstName(): string {
         return this.firstName
     }
 
@@ -29,7 +29,7 @@ export default class User {
      * Gets the last name of the user.
      * @returns {string} The last name of the user.
      */
-    getLastName() {
+    getLastName(): string {
         return this.lastName
     }
 
@@ -37,7 +37,7 @@ export default class User {
      * Gets the email of the user.
      * @returns {string} The email of the user.
      */
-    getEmail() {
+    getEmail(): string {
         return this.email
     }
 
@@ -45,7 +45,7 @@ export default class User {
      * Gets the password of the user.
      * @returns {string} The password of the user.
      */
-    getPassword() {
+    getPassword(): string {
         return this.password
     }
 }

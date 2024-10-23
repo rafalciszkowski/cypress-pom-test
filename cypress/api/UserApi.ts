@@ -10,7 +10,7 @@ export default class UserApi {
      * @param {User} user - The user to register.
      * @returns {Cypress.Chainable<Cypress.Response<any>>} The response from the API.
      */
-    register(user) {
+    register(user: User): Cypress.Chainable<Cypress.Response<any>> {
         return cy.request({
             method: 'POST',
             url: '/api/v1/users/register',

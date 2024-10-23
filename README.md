@@ -1,4 +1,4 @@
-# cypress-pom-test
+# cypress-pom-typescript
 
 Docker execution:
 1. Run CMD terminal as administrator

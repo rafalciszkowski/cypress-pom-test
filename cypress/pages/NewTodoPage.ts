@@ -28,6 +28,14 @@ export default class NewTodoPage {
     }
 
     /**
+     * Gets the error element.
+     * @returns {Cypress.Chainable<JQuery<HTMLElement>>} The error element.
+    */    
+    get errorMessage(): Cypress.Chainable<JQuery<HTMLElement>> {
+        return cy.get('p.Mui-error')
+    }
+
+    /**
      * Loads the new todo page.
      * @returns {Cypress.Chainable<Window>} The window object of the loaded page.
      */
@@ -49,7 +57,15 @@ export default class NewTodoPage {
      * @param {string} item - The item to be created as a new todo.
      * @returns {Cypress.Chainable<Cypress.Response<any>>} The response from the API.
      */
-    createNewTodoUsingApi(item: string): Cypress.Chainable<Cypress.Response<any>> {
-        return this.todoApi.createTodo(item)
+    createNewTodoUsingApi(item: string, completed: boolean): Cypress.Chainable<Cypress.Response<any>> {
+        return this.todoApi.createTodo(item, completed)
+    }
+
+    /**
+     * Validates the text value and the CSS of the error message.
+    */
+    validateErrorMessage(): void {
+        this.errorMessage.should('have.text', 'New todo is required, and it should be more than 3 characters')
+            .and('have.css', 'color', 'rgb(244, 67, 54)')
     }
 }

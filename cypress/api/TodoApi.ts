@@ -14,13 +14,13 @@ export default class TodoApi {
      * @param {string} item - The item to be created as a new todo.
      * @returns {Cypress.Chainable<Cypress.Response<any>>} The response from the API.
      */
-    createTodo(item: string): Cypress.Chainable<Cypress.Response<any>> {
+    createTodo(item: string, completed: boolean): Cypress.Chainable<Cypress.Response<any>> {
         return this.userApi.register(this.user).then(({ body }) => {
             return cy.request({
                 method: 'POST',
                 url: '/api/v1/tasks',
                 body: {
-                    isCompleted: false,
+                    isCompleted: completed,
                     item: item,
                 },
                 headers: {

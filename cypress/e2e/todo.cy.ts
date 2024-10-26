@@ -35,7 +35,7 @@ describe('Adding and Deleting Todo', () => {
         newTodoPage.addTodo(todoText)
 
         // Verify the new todo item is added
-        todoPage.todoElement.should('have.text', todoText)
+        todoPage.todoTextElement.should('have.text', todoText)
     });
 
     /**
@@ -43,18 +43,69 @@ describe('Adding and Deleting Todo', () => {
      */
     it('should delete the todo', () => {
         // Create a new todo item using the API
-        newTodoPage.createNewTodoUsingApi(todoText)
+        newTodoPage.createNewTodoUsingApi(todoText, false)
 
         // Load the todo page
         todoPage.load()
 
         // Verify the todo item is present
-        todoPage.todoElement.should('have.text', todoText)
+        todoPage.todoTextElement.should('have.text', todoText)
 
         // Delete the todo item
         todoPage.deleteTodo()
 
         // Verify the todo item is deleted
         todoPage.noTodosElement.should('be.visible')
-    })
+    });
+
+    /**
+     * Test case for adding multiple todos
+     */
+    it('should add multiple todos', () => {
+        // Register the user using the API
+        registerPage.registerUsingApi()
+
+        // Load the new todo page
+        todoPage.load()
+
+        // Add multiple todos and validate list of todos
+        cy.fixture('testData').then((data) => {
+            todoPage.addMultipleTodos(data.itemText)
+            todoPage.validateTodoList(data.itemText)
+        })
+    });
+
+    /**
+     * Test case for validating todo items CSS properties.
+     */
+    it('should validate todo items css properties', () => {
+        // Create a new todo item using the API
+        newTodoPage.createNewTodoUsingApi(todoText, false)
+
+        // Load the todo page
+        todoPage.load()
+
+        // Validate the CSS properties of the todo items before completion
+        todoPage.validateTodoListCss(false)
+
+        // Click the checkbox to mark the todo as completed
+        todoPage.clickCheckbox()
+
+        // Validate the CSS properties of the todo items after completion
+        todoPage.validateTodoListCss(true)
+    });
+
+    it('should not add a new todo', () => {
+        // Register the user using the API
+        registerPage.registerUsingApi()
+
+        // Load the new todo page
+        newTodoPage.load()
+
+        // Click the Create Todo button
+        newTodoPage.createTodoButton.click()
+
+        // Verify the error message
+        newTodoPage.validateErrorMessage()
+    });
 });

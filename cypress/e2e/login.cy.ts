@@ -29,7 +29,7 @@ describe('Login Functionality Tests', () => {
      * Iterates over the invalidLogin array and performs login attempts with each set of invalid credentials.
      */
     Cypress._.times(invalidLogin.length, (index) => {
-        it(`should display error for invalid login - type: ${invalidLogin[index].type}`, () => {
+        it(`should display error for invalid login - error type: ${invalidLogin[index].type}`, () => {
             loginPage.loginWithInvalidData(invalidLogin[index], invalidLogin[index].type)
             loginPage.validateErrorMessage(invalidLogin[index].type, index)
         })

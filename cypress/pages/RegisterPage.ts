@@ -1,4 +1,5 @@
 import UserApi from "../api/UserApi"
+import CustomResponse from "../interfaces/CustomResponse"
 import User from "../models/User"
 
 /**
@@ -70,7 +71,7 @@ export default class RegisterPage {
      * @param {User} user - The user details to register.
      */
     register(user: User): void {
-        this.firstNameInput.type(user.getFirstName());
+        this.firstNameInput.type(user.getFirstName())
         this.lastNameInput.type(user.getLastName())
         this.emailInput.type(user.getEmail())
         this.passwordInput.type(user.getPassword())
@@ -80,9 +81,9 @@ export default class RegisterPage {
 
     /**
      * Registers a new user using the API.
-     * @returns {Cypress.Chainable<Cypress.Response<any>>} The response from the API.
+     * @returns {Cypress.Chainable<CustomResponse>} The custom response that is extended with requestBody property.
      */
-    registerUsingApi(): Cypress.Chainable<Cypress.Response<any>> {
+    registerUsingApi(): Cypress.Chainable<CustomResponse> {
         return this.userApi.register(this.user)
     }
 }

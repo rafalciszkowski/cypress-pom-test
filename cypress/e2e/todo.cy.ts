@@ -1,6 +1,8 @@
-import NewTodoPage from "../pages/NewTodoPage";
-import RegisterPage from "../pages/RegisterPage";
-import TodoPage from "../pages/TodoPage";
+import NewTodoPage from "../pages/NewTodoPage"
+import RegisterPage from "../pages/RegisterPage"
+import TodoPage from "../pages/TodoPage"
+import { itemText } from "../fixtures/testData"
+
 
 /**
  * Test suite for adding and deleting todo items.
@@ -19,7 +21,7 @@ describe('Adding and Deleting Todo', () => {
         newTodoPage = new NewTodoPage()
         registerPage = new RegisterPage()
         todoPage = new TodoPage()
-    });
+    })
 
     /**
      * Test case for adding a new todo item.
@@ -36,7 +38,7 @@ describe('Adding and Deleting Todo', () => {
 
         // Verify the new todo item is added
         todoPage.todoTextElement.should('have.text', todoText)
-    });
+    })
 
     /**
      * Test case for deleting a todo item.
@@ -56,7 +58,7 @@ describe('Adding and Deleting Todo', () => {
 
         // Verify the todo item is deleted
         todoPage.noTodosElement.should('be.visible')
-    });
+    })
 
     /**
      * Test case for adding multiple todos
@@ -69,11 +71,9 @@ describe('Adding and Deleting Todo', () => {
         todoPage.load()
 
         // Add multiple todos and validate list of todos
-        cy.fixture('testData').then((data) => {
-            todoPage.addMultipleTodos(data.itemText)
-            todoPage.validateTodoList(data.itemText)
-        })
-    });
+        todoPage.addMultipleTodos(itemText)
+        todoPage.validateTodoList(itemText)
+    })
 
     /**
      * Test case for validating todo items CSS properties.
@@ -93,7 +93,7 @@ describe('Adding and Deleting Todo', () => {
 
         // Validate the CSS properties of the todo items after completion
         todoPage.validateTodoListCss(true)
-    });
+    })
 
     it('should not add a new todo', () => {
         // Register the user using the API
@@ -107,5 +107,5 @@ describe('Adding and Deleting Todo', () => {
 
         // Verify the error message
         newTodoPage.validateErrorMessage()
-    });
-});
+    })
+})

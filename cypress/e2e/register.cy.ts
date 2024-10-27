@@ -18,7 +18,7 @@ describe('Register a New User', () => {
         registerPage = new RegisterPage()
         user = new User()
         todoPage = new TodoPage()
-    });
+    })
 
     /**
      * Test case for registering a new user and verifying the no todos element is visible.

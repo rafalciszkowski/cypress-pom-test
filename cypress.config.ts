@@ -1,10 +1,11 @@
-const { defineConfig } = require("cypress");
+import { defineConfig } from 'cypress'
 
-module.exports = defineConfig({
+export default defineConfig({
+  video: false,
   e2e: {
     baseUrl: 'https://todo.qacart.com',
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
   },
-});
+})

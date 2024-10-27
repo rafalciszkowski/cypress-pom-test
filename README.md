@@ -1,4 +1,4 @@
-# cypress-pom-typescript
+# Cypress POM TypeScript
 
 ## Overview:
 This project demonstrates the use of Cypress with the Page Object Model (POM) pattern and TypeScript. It includes tests for login functionality, both with valid and invalid credentials, ensuring robust test coverage and maintainability.
